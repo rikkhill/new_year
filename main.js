@@ -4,7 +4,7 @@ fetch("./tester.ink.json")
   })
   .then(function(storyContent) {
 
-    console.log("Hit the beginning of main.js")
+    console.log("Hit the beginning of main.js");
 
     // Create ink story from the content using inkjs
     var story = new inkjs.Story(storyContent);
@@ -13,6 +13,11 @@ fetch("./tester.ink.json")
 
     let savedTheme;
     let globalTagTheme;
+
+    // get the scene
+    const urlParams = new URLSearchParams(window.location.search);
+    const scene = urlParams.get("scene");
+    console.log("Scene: ", scene ? scene : 0);
 
     // Global tags - those at the top of the ink file
     // We support:
@@ -43,13 +48,30 @@ fetch("./tester.ink.json")
     // page features setup
     setupTheme(globalTagTheme);
     var hasSave = loadSavePoint();
-    setupButtons(hasSave);
 
-    // Set initial save point
     savePoint = story.state.toJson();
+
+    // Assume we're going to be in the suspended state
+    // Consume all the content silently here
+    // Need some way to "break" out of the suspended state
+
+   consumeStory(true);
+
+    story.ChooseChoiceIndex(scene);
+
 
     // Kick off the start of the story!
     continueStory(true);
+
+
+    function consumeStory(log) {
+      while ( story.canContinue) {
+        let content = story.Continue();
+        if (log) {
+          console.log("Consumed content: ", content);
+        }
+      }
+    }
 
     // Main story processing function. Each time this is called it generates
     // all the next content up as far as the next set of choices.
@@ -57,6 +79,7 @@ fetch("./tester.ink.json")
 
         var paragraphIndex = 0;
         var delay = 0.0;
+
 
         // Don't over-scroll past new content
         var previousBottomEdge = firstTime ? 0 : contentBottomEdgeY();
@@ -89,7 +112,7 @@ fetch("./tester.ink.json")
                 }
 
                 // AUDIOLOOP: src
-                else if( splitTag && splitTag.property == "AUDIOLOOP" ) {
+                else if( splitTag && splitTag.property === "AUDIOLOOP" ) {
                   if('audioLoop' in this) {
                     this.audioLoop.pause();
                     this.audioLoop.removeAttribute('src');
@@ -101,7 +124,7 @@ fetch("./tester.ink.json")
                 }
 
                 // IMAGE: src
-                if( splitTag && splitTag.property == "IMAGE" ) {
+                if( splitTag && splitTag.property === "IMAGE" ) {
                     var imageElement = document.createElement('img');
                     imageElement.src = splitTag.val;
                     storyContainer.appendChild(imageElement);
@@ -111,39 +134,63 @@ fetch("./tester.ink.json")
                 }
 
                 // LINK: url
-                else if( splitTag && splitTag.property == "LINK" ) {
+                else if( splitTag && splitTag.property === "LINK" ) {
                     window.location.href = splitTag.val;
                 }
 
+
                 // LINKOPEN: url
-                else if( splitTag && splitTag.property == "LINKOPEN" ) {
+                else if( splitTag && splitTag.property === "LINKOPEN" ) {
                     window.open(splitTag.val);
                 }
 
                 // BACKGROUND: src
-                else if( splitTag && splitTag.property == "BACKGROUND" ) {
+                else if( splitTag && splitTag.property === "BACKGROUND" ) {
                     outerScrollContainer.style.backgroundImage = 'url('+splitTag.val+')';
                 }
 
                 // CLASS: className
-                else if( splitTag && splitTag.property == "CLASS" ) {
+                else if( splitTag && splitTag.property === "CLASS" ) {
                     customClasses.push(splitTag.val);
                 }
 
                 // CLEAR - removes all existing content.
                 // RESTART - clears everything and restarts the story from the beginning
-                else if( tag == "CLEAR" || tag == "RESTART" ) {
+                else if( tag === "CLEAR" || tag === "RESTART" ) {
                     removeAll("p");
                     removeAll("img");
 
                     // Comment out this line if you want to leave the header visible when clearing
                     setVisible(".header", false);
 
-                    if( tag == "RESTART" ) {
+                    if( tag === "RESTART" ) {
                         restart();
                         return;
                     }
                 }
+
+                // SAVE
+                else if( tag === "SAVE" ) {
+                  console.log("Received ink command to save");
+                  saveState();
+                }
+
+                // AWAIT
+                else if( tag === "AWAIT" ) {
+                  console.log("AWAIT");
+                  saveState();
+                  consumeStory(true);
+                  console.log("choices", story.currentChoices);
+                  story.ChooseChoiceIndex(0); // Exit without saving
+                }
+
+                // ENDSESSION
+                else if( tag === "ENDSESSION" ) {
+                  // Here we do something to end the session
+                  // maybe close the window...
+                  console.log("ENDSESSION");
+                }
+
             }
 
             // Create paragraph element (initially hidden)
@@ -305,6 +352,7 @@ fetch("./tester.ink.json")
     function loadSavePoint() {
 
         try {
+            console.log("Loading saved state");
             let savedState = window.localStorage.getItem('save-state');
             if (savedState) {
                 story.state.LoadJson(savedState);
@@ -334,6 +382,16 @@ fetch("./tester.ink.json")
             || (savedTheme == undefined && globalTagTheme === "dark")
             || (savedTheme == undefined && globalTagTheme == undefined && browserDark))
             document.body.classList.add("dark");
+    }
+
+    function saveState() {
+      try {
+        console.log("Saving state");
+        window.localStorage.setItem('save-state', savePoint);
+        window.localStorage.setItem('theme', document.body.classList.contains("dark") ? "dark" : "");
+      } catch (e) {
+        console.warn("Couldn't save state", e);
+      }
     }
 
     // Used to hook up the functionality for global functionality buttons

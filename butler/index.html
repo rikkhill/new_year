@@ -19,7 +19,7 @@
         <a href="#" id="play">Play</a>
     </div>
      <div id="screen">
-        The screen goes here
+         &nbsp;
     </div>
 </div>
 
@@ -89,11 +89,11 @@
     countdown();
 
     setTimeout(function() {
-      screen.innerHTML = `<img src='${randomVideoURL}' width="500px"/>`;
+      screen.innerHTML = `<div class='content'><img src='${randomVideoURL}' width="500px"/></div>`;
     }, 5000);
 
     setTimeout(function() {
-      screen.innerHTML = "~FIN~"
+      screen.innerHTML = "<span class='screentext'>~FIN~</span>"
     }, 11000);
 
 

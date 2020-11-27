@@ -14,12 +14,14 @@
 <body>
 
 <div class="outerContainer">
-
-    <div id="controls">
-        <a href="#" id="play">Play</a>
+    <div class="title">
+        WHAT THE BUTLER SAW!
     </div>
-     <div id="screen">
-         &nbsp;
+    <div id="screen">
+        &nbsp;
+    </div>
+    <div class="controls">
+        <a href="#" id="play">Play</a>
     </div>
 </div>
 
@@ -45,6 +47,13 @@
     "https://media.giphy.com/media/ZIxe20TqPXMPe/giphy.gif",
     "https://media.giphy.com/media/Mh2FpXnWZ8mFG/giphy.gif",
     "https://media.giphy.com/media/u28AbplbpJwFa/giphy.gif",
+    "https://media.giphy.com/media/hgYAu9UIcK6aI/giphy.gif",
+    "https://media.giphy.com/media/85p0dpfRvPnfa/giphy.gif",
+    "https://media.giphy.com/media/l1AsAV04FCMOoFyHm/giphy.gif",
+    "https://media.giphy.com/media/E19RHuY5MUFrO/giphy.gif",
+    "https://media.giphy.com/media/SV4IArpF2phbq/giphy.gif",
+
+
 
 
 
@@ -57,23 +66,23 @@
   function countdown() {
 
     setTimeout(function() {
-      screen.innerHTML = "1"
-    }, 4000);
+      screen.innerHTML = "<span class='screentext'>1</span>"
+    }, 900 * 4);
 
     setTimeout(function() {
-      screen.innerHTML = "2"
-    }, 3000);
+      screen.innerHTML = "<span class='screentext'>2</span>"
+    }, 900 * 3);
 
     setTimeout(function() {
-      screen.innerHTML = "3"
-    }, 2000);
+      screen.innerHTML = "<span class='screentext'>3</span>"
+    }, 900 * 2);
 
     setTimeout(function() {
-      screen.innerHTML = "4"
-    }, 1000);
+      screen.innerHTML = "<span class='screentext'>4</span>"
+    }, 900 * 1);
 
     setTimeout(function() {
-      screen.innerHTML = "5"
+      screen.innerHTML = "<span class='screentext'>5</span>"
     }, 0);
 
 

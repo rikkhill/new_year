@@ -3,10 +3,14 @@ html, body {
     height: 100%;
 }
 
+body {
+    background-color: #4b0000;
+}
+
 .outerContainer {
     background-color: darkred;
     width: 70%;
-    height: 70%;
+    height: 85%;
     top: 15%;
     margin-left: 15%;
 }
@@ -16,28 +20,53 @@ html, body {
     width: 70%;
     height: 70%;
     margin-left: 15%;
-    margin-top: 7.5%;
     color: #888888;
     text-align: center;
     overflow: hidden;
     border-radius: 8px;
 }
 
-#controls {
+.title {
+    font-family: cursive;
+    text-align: center;
+    color: goldenrod;
+    font-size: 24pt;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.controls {
     z-index: 4;
     font-size: 9pt;
     text-align: center;
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-top: 2%;
     padding-bottom: 6px;
-    right: 14px;
-    top: 4px;
     transition: color 0.6s, background 0.6s;
 }
 
-#controls [disabled] {
+.controls a {
+    text-decoration: none;
+    font-size: 24pt;
+    color: darkgoldenrod;
+    background-color: darkred;
+    display: block;
+    text-align: center;
+    border: ridge;
+    border-radius: 3px;
+}
+
+.controls a:hover {
+    background-color: #4b0000;
+    border-color: #a87600;
+}
+
+.controls [disabled] {
     color: #ccc;
 }
 
-#controls>*:not(:last-child):after {
+.controls>*:not(:last-child):after {
     content: " | ";
 }
 
@@ -48,8 +77,9 @@ html, body {
 
 .screentext {
     text-align: center;
-    margin-top: 45%;
-    font-size: x-large;
+    margin-top: 20%;
+    font-size: 72pt;
+    display: block;
 }
 
 @media screen and (max-width: 980px) {

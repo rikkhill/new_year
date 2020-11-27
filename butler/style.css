@@ -75,6 +75,10 @@ body {
     display: block;
 }
 
+.content img {
+    width: 500px;
+}
+
 .screentext {
     text-align: center;
     margin-top: 20%;

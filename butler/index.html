@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>WHAT THE BUTLER SAW</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="outerContainer">
+
+    <div id="controls">
+        <a href="#" id="play">Play</a>
+    </div>
+     <div id="screen">
+        The screen goes here
+    </div>
+</div>
+
+<script>
+
+  const videos = [
+    "https://media.giphy.com/media/PIDxvqJNkrOrC/giphy.gif",
+    "https://media.giphy.com/media/2hl086Ui4W4YU/giphy.gif",
+    "https://media.giphy.com/media/rV3zQ64Fh0TpC/giphy.gif",
+    "https://media.giphy.com/media/Y4aRyFaavT9ss/giphy.gif",
+    "https://media.giphy.com/media/njqtXo391qcVy/giphy.gif",
+    "https://media.giphy.com/media/7AXWA5riPxp60/giphy.gif",
+    "https://media.giphy.com/media/DfSLII45H40RW/giphy.gif",
+    "https://media.giphy.com/media/uxXNV3Xa7QqME/giphy.gif",
+    "https://media.giphy.com/media/e2E5DEXDNt280/giphy.gif",
+    "https://media.giphy.com/media/I3tzlywr3Is8M/giphy.gif",
+    "https://media.giphy.com/media/124ECvzGPOXbsA/giphy.gif",
+    "https://media.giphy.com/media/kq1KSSLxmvlzG/giphy.gif",
+    "https://media.giphy.com/media/gWED4VeSbHOHS/giphy.gif",
+    "https://media.giphy.com/media/c05nqDhApNKoM/giphy.gif",
+    "https://media.giphy.com/media/fx2uQQZG8AuZ0MikCE/giphy.gif",
+    "https://media.giphy.com/media/26xBJESzSA2hd6wiA/giphy.gif",
+    "https://media.giphy.com/media/ZIxe20TqPXMPe/giphy.gif",
+    "https://media.giphy.com/media/Mh2FpXnWZ8mFG/giphy.gif",
+    "https://media.giphy.com/media/u28AbplbpJwFa/giphy.gif",
+
+
+
+  ];
+
+  let play = document.getElementById("play");
+
+  let screen = document.getElementById("screen");
+
+  function countdown() {
+
+    setTimeout(function() {
+      screen.innerHTML = "1"
+    }, 4000);
+
+    setTimeout(function() {
+      screen.innerHTML = "2"
+    }, 3000);
+
+    setTimeout(function() {
+      screen.innerHTML = "3"
+    }, 2000);
+
+    setTimeout(function() {
+      screen.innerHTML = "4"
+    }, 1000);
+
+    setTimeout(function() {
+      screen.innerHTML = "5"
+    }, 0);
+
+
+
+  }
+
+  play.addEventListener("click", function(event) {
+    if (play.getAttribute("disabled")) {
+      return;
+    }
+
+    let randomVideoURL = videos[Math.floor(Math.random() * videos.length)];
+    countdown();
+
+    setTimeout(function() {
+      screen.innerHTML = `<img src='${randomVideoURL}' width="500px"/>`;
+    }, 5000);
+
+    setTimeout(function() {
+      screen.innerHTML = "~FIN~"
+    }, 11000);
+
+
+
+
+
+
+  });
+</script>
+
+</body>
+</html>

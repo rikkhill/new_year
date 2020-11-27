@@ -213,7 +213,7 @@ fetch("./tester.ink.json")
             // Create paragraph with anchor element
             var choiceParagraphElement = document.createElement('p');
             choiceParagraphElement.classList.add("choice");
-            choiceParagraphElement.innerHTML = `<a href='#'>${choice.text}</a>`
+            choiceParagraphElement.innerHTML = `<a href='#'>${choice.text}</a>`;
             storyContainer.appendChild(choiceParagraphElement);
 
             // Fade choice in after a short delay

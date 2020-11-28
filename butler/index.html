@@ -63,8 +63,10 @@
 
   let screen = document.getElementById("screen");
 
-  function countdown() {
+  let nofin = false;
 
+  function countdown() {
+    nofin = true;
     setTimeout(function() {
       screen.innerHTML = "<span class='screentext'>1</span>"
     }, 900 * 4);
@@ -75,6 +77,8 @@
 
     setTimeout(function() {
       screen.innerHTML = "<span class='screentext'>3</span>"
+      play.classList.add("invisible");
+      play.setAttribute("disabled", true);
     }, 900 * 2);
 
     setTimeout(function() {
@@ -98,11 +102,18 @@
     countdown();
 
     setTimeout(function() {
+      nofin = false;
       screen.innerHTML = `<div class='content'><img src='${randomVideoURL}'/></div>`;
     }, 5000);
 
     setTimeout(function() {
-      screen.innerHTML = "<span class='screentext'>~FIN~</span>"
+      play.classList.remove("invisible");
+      play.removeAttribute("disabled");
+
+      if (nofin === false) {
+        screen.innerHTML = "<span class='screentext'>~FIN~</span>"
+      }
+
     }, 11000);
 
 

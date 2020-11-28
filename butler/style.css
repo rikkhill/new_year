@@ -13,6 +13,7 @@ body {
     height: 85%;
     top: 15%;
     margin-left: 15%;
+    border-radius: 10px;
 }
 
 #screen {
@@ -77,6 +78,10 @@ body {
 
 .content img {
     width: 500px;
+}
+
+.invisible {
+    opacity: 0.0;
 }
 
 .screentext {

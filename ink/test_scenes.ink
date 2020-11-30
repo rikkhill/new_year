@@ -20,7 +20,7 @@ Here is some content for Scene 1
     
 - -> show_winds ->
 
--> conclude
+- -> conclude
     
 ===scene_two===
 Here is some content for Scene 2

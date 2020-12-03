@@ -9,6 +9,8 @@ INCLUDE knowledge.ink
 ~ slow++
 ~ Facts += (stone_man_speaks)
 
+~ random_book()
+
 -> scene_selector
 
 

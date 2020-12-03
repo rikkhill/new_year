@@ -21,6 +21,7 @@ The Stone Man rises up from the ground before you<>
 + {Facts ? stone_man_speaks} [Speak to the Stone Man{speak: again}] -> speak
 
 =look
+// TODO: Describe the Stone Man
 
 -> conclude
 

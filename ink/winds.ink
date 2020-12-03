@@ -5,6 +5,7 @@ VAR disp = 0
 VAR slow = 0
 VAR inc = 0
 
+
 === function boost_lost(val)
     ~ lost = lost + val
     
@@ -24,3 +25,30 @@ DISPOSSESSED: {disp}
 SLOW: {slow}
 INCOMPLETE: {inc}
 ->->
+
+=== function highest_winds()
+
+LIST winds = (l), (d), (s), (i)
+
+{
+    - lost < disp || lost < slow || lost < inc:
+        ~ winds -= l
+}
+
+{
+    - disp < lost || disp < slow || disp < inc:
+        ~ winds -= d
+}
+
+{
+    - slow < lost || slow < disp || slow < inc:
+        ~ winds -= s
+}
+
+{
+    - inc < lost || inc < slow || inc < disp:
+        ~ winds -= i
+}
+
+~ return winds
+

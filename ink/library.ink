@@ -17,10 +17,31 @@
 - -> conclude
 
 =odd_topics
+
++ Book of the Unknowing -> book_of_the_unknowing
+
 -> odd_choice
+
 
 =random_odd_book
 -> odd_choice
+
+
+
+===book_of_the_unknowing
+BOOK OF THE UNKNOWING.
+
+Its smoky-grey binding has a velvety texture, which your fingers sink into a little.
+
+- (picked_up_boto)
++ [Read the author's name{picked_up_boto > 1: again}]
+    Your eyes skim{picked_up_boto > 1: { again| once more}} over the name beneath the book's title -> picked_up_boto
++ [Open the book] ->
++ [Put the book back]
+    You put the book back where you found it -> shelf_of_oddities.odd_choice
+-
+The pages of the book
+-> shelf_of_oddities.odd_choice
 
 
 === function random_book()
@@ -47,3 +68,6 @@ VAR topic = ""
 { RANDOM(1,3) < 3:
     {~ on Toast| in Space| and Other Problems|: The Real Deal|: Why We Can't Just Leave Them Like That| in the Spirit Realm|: An Introduction|: An Advanced Treatment| and What to Do About Them|: My Year Among Them}
 }
+
+
+

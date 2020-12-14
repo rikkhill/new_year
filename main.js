@@ -1,4 +1,4 @@
-fetch("./tester.ink.json")
+fetch("./FourWinds.ink.json")
   .then(function (response) {
     return response.text();
   })
@@ -53,9 +53,8 @@ fetch("./tester.ink.json")
 
     // Assume we're going to be in the suspended state
     // Consume all the content silently here
-    // Need some way to "break" out of the suspended state
 
-   consumeStory(true);
+    consumeStory(true);
 
     story.ChooseChoiceIndex(scene);
 

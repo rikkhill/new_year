@@ -3,6 +3,7 @@ VAR calls_kindred = false
 
 ===stone_man
 # BACKGROUND: ./background_images/stoneman.jpg
+# TITLE: THE STONE MAN
 
 -> intro
 

@@ -143,6 +143,15 @@ fetch("./FourWinds.ink.json")
                     window.open(splitTag.val);
                 }
 
+                // LINKOPEN: url
+                else if( splitTag && splitTag.property === "TITLE" ) {
+                  let titles = document.getElementsByClassName("pageTitle");
+                  for (title of titles) {
+                    title.innerHTML = splitTag.val;
+                  }
+
+                }
+
                 // BACKGROUND: src
                 else if( splitTag && splitTag.property === "BACKGROUND" ) {
                     outerScrollContainer.style.backgroundImage = 'url('+splitTag.val+')';

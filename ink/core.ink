@@ -3,6 +3,8 @@ INCLUDE test_scenes.ink
 INCLUDE library.ink
 INCLUDE stone_man.ink
 INCLUDE knowledge.ink
+INCLUDE clock.ink
+
 
 ~ slow = 10
 ~ slow++
@@ -19,8 +21,9 @@ INCLUDE knowledge.ink
 + [END SESSION] -> end_session // always option 0
 + [SCENE ONE] -> scene_one
 + [SCENE TWO] -> scene_two
-+ [BOOKSHELF OF ODDITIES] -> shelf_of_oddities
-+ [STONE MAN] -> stone_man
++ [BOOKSHELF OF ODDITIES] -> shelf_of_oddities      // 3
++ [STONE MAN] -> stone_man                          // 4
++ [STOPPED CLOCK] -> stopped_clock                  // 5
 
 =end_session
 # ENDSESSION

@@ -2,6 +2,10 @@
 
 
 ===shelf_of_oddities
+# BACKGROUND: ./background_images/bookshelf.jpg
+# TITLE: THE BOOKSHELF OF ODDITIES
+
+-> intro
 
 =intro
 "ODDITIES" {(intro == 1): reads the sign above the bookshelf}
@@ -24,6 +28,9 @@
 
 
 =random_odd_book
+
+"{random_book()}"
+
 -> odd_choice
 
 
@@ -61,11 +68,11 @@ VAR topic = ""
 
 ~ topic = "{~Vampires|Cats|Donkeys|Things|Trees|Yeti|Ennui|Souls|Mind Control|Dreams|Tarot|Crystals|Ancient Civilisations|Gods|Demons|Angels|Rabbits|Tigers|Reincarnation|Werewolves|Diseases|Magic|Spirits|Meditation|Kung Fu|Corpses|Impossibilities|Paradoxes}"
 
-{ RANDOM(1, 3) < 3:
+{RANDOM(1, 3) < 3:
     {~Dealing with|Meditations on|Imaginary|Dangerous|Harmless|Invisible|The Truth About|Clever|Psychic|Violent|Sleeping With|Crystal|Unknown|Really Big|Ancient|Dharmic|Mysterious|Cold|Hot|Sexy|Really Sexy|Incredibly Sexy|Magic|Angelic|Demonic|Spirit|Advanced|Beginners|Intermediate|Dead|Living|Animated|Everything You Ever Wanted To Know About|Impossible|Paradoxical} <>
-} <>
+}<>
 {topic}<>
-{ RANDOM(1,3) < 3:
+{RANDOM(1,3) < 3:
     {~ on Toast| in Space| and Other Problems|: The Real Deal|: Why We Can't Just Leave Them Like That| in the Spirit Realm|: An Introduction|: An Advanced Treatment| and What to Do About Them|: My Year Among Them}
 }
 

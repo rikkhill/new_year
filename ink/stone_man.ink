@@ -26,7 +26,7 @@ The Stone Man rises up from the ground before you<>
 =look
 // TODO: Describe the Stone Man
 
--> conclude
+-> choice
 
 =speak
 {speak == 1: Just before you open your mouth, you feel faintly silly talking to a lump of stone.}
